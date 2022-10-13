@@ -75,7 +75,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="heading heading--primary">Medeivel Memories</h1>
+      <h1 className="heading heading--primary">Medeival Memories</h1>
       <h2 className="heading heading--secondary">Attempts: {attempts}</h2>
       <button onClick={newGame} className="btn">
         New Game
