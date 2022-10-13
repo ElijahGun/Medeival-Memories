@@ -1,0 +1,56 @@
+
+
+:root {
+  font-size: 62.5%; //1rem = 16px
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  padding: 5rem 9rem;
+  background-image: linear-gradient( rgb(25, 4, 46), rgb(22,6,39));
+}
+
+.btn {
+  padding: 1.5rem 2.5rem;
+  background-color: rgb(22, 6, 39);
+  color: white;
+  transition: all .2s;
+  box-shadow: 0 .5rem .5rem rgba(189,127,255,.3);
+  margin-bottom: 3rem;
+
+  &:hover {
+    background-color: rgb(189, 127, 255);
+    cursor: pointer;
+    transform: translateY(-.25rem);
+  }
+
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, max-content) ;
+  grid-gap: 2.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  font-family: 'Tangerine', cursive;
+  color: white;
+
+  &--primary {
+    font-size: 7rem;
+    text-decoration: underline 1px;
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  &--secondary {
+    font-size: 3rem;
+    margin-bottom: 2.5rem;
+  }
+
+}
