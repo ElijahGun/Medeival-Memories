@@ -1,7 +1,7 @@
 .card {
     position: relative;
-  height: 30rem;
-  width: 22.5rem;
+  height: 20rem;
+  width: 15rem;
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
@@ -11,14 +11,12 @@
 
   & > * {
     height: 100%;
-    width: 22.5rem;
     transition: all 0.8s ease;
     backface-visibility: hidden;
     position: absolute;
     top: 0;
     left: 0;
     border: 1px solid rgba(255, 215, 0, .4);
-    box-shadow: 1rem 1rem 3rem rgba(255,255,255, .2);
     transition: all .5s ease;
   }
 

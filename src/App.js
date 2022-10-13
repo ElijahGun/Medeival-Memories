@@ -2,8 +2,6 @@ import "./App.scss";
 import { useState, useEffect } from "react";
 import Card from "./components/Card";
 
-
-
 const images = [
   { src: "images/castle-white.jpg", match: false },
   { src: "images/castle-brown.jpg", match: false },
@@ -14,10 +12,12 @@ const images = [
 ];
 
 function App() {
+  //STATES
   const [cards, setCards] = useState([]);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null); // states for player card selections
-  const [attempts, setAttempts] = useState(0) // players tries for match
+  const [attempts, setAttempts] = useState(0); // players tries for match
+  const [disabled, setDisabled] = useState(false); // disable state of cards between selections
 
   //Starts new game
   const newGame = () => {
@@ -29,7 +29,7 @@ function App() {
     setCards(shuffledCards);
     setChoiceOne(null);
     setChoiceTwo(null);
-    setAttempts(0)
+    setAttempts(0);
   };
 
   //start game upon loading
@@ -46,27 +46,31 @@ function App() {
   // handles game logic
   useEffect(() => {
     if (choiceOne && choiceTwo) {
-      setAttempts(prevAttempts => prevAttempts + 1)
+      setDisabled(true)
+      setAttempts((prevAttempts) => prevAttempts + 1);
       if (choiceOne.src === choiceTwo.src) {
         console.log("YESSS they same!!!");
-        setCards(prevCards => {
-          return prevCards.map(card => {
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
             if (card.src === choiceOne.src) {
-              return ({...card, match: true})
+              return { ...card, match: true };
             } else {
-              return card
+              return card;
             }
-          })
-        })
-        setChoiceOne(null)
-        setChoiceTwo(null)
+          });
+        });
+        setChoiceOne(null);
+        setChoiceTwo(null);
+        setDisabled(false)
       } else {
         console.log("NOO DIFF SOn!");
-        setTimeout(() => {      setChoiceOne(null)
-          setChoiceTwo(null)}, 1000)
+        setTimeout(() => {
+          setChoiceOne(null);
+          setChoiceTwo(null);
+          setDisabled(false)
+        }, 1000);
       }
     }
-
   }, [choiceOne, choiceTwo]);
 
   return (
@@ -77,9 +81,18 @@ function App() {
         New Game
       </button>
       <div className="card-grid">
-        {cards && cards.map((card) => {
-          return <Card key={card.id} card={card} handleChoice={handleChoice} flipped={card.match || card === choiceOne || card === choiceTwo} />;
-        })}
+        {cards &&
+          cards.map((card) => {
+            return (
+              <Card
+                key={card.id}
+                card={card}
+                handleChoice={handleChoice}
+                flipped={card.match || card === choiceOne || card === choiceTwo}
+                disabled={disabled}
+              />
+            );
+          })}
       </div>
     </div>
   );
